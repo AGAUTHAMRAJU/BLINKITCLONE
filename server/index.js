@@ -67,6 +67,9 @@
 //     })
 // })
 
+
+
+
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
@@ -88,8 +91,8 @@ const app = express();
 
 // Allowed origins for CORS
 const allowedOrigins = [
-    'https://blinkit.netlify.app',  // Netlify frontend
-     // Another backend domain (if applicable)
+    'https://blinkit.netlify.app',  // Netlify frontend URL
+    // Add any other allowed origins here
 ];
 
 // CORS setup
@@ -97,19 +100,19 @@ app.use(cors({
     origin: function (origin, callback) {
         // Allow specific origins and allow requests from localhost during development
         if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-            callback(null, true);
+            callback(null, true);  // Allow the origin
         } else {
             callback(new Error("Not allowed by CORS"));
         }
     },
-    credentials: true,  // Allow credentials (cookies)
+    credentials: true,  // Allow cookies to be sent with requests
     methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Allowed HTTP methods
 }));
 
 // Body parser middleware
 app.use(express.json());
 app.use(cookieParser());
-app.use(morgan('dev')); // You can specify a log format here
+app.use(morgan('dev'));  // Using the 'dev' format for logs, you can customize this
 app.use(helmet({ crossOriginResourcePolicy: false }));
 
 // Ensure the correct PORT is used
@@ -135,4 +138,3 @@ connectDB().then(() => {
         console.log("Server is running on port " + PORT);
     });
 });
-
