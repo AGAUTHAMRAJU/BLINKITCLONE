@@ -27,7 +27,7 @@ app.use(helmet({
     crossOriginResourcePolicy : false
 }))
 
-const PORT = process.env.PORT 
+const PORT = process.env.PORT || 8080
 
 app.get("/",(request,response)=>{
     ///server to client
@@ -47,7 +47,7 @@ app.use('/api/order',orderRouter)
 
 connectDB().then(()=>{
     app.listen(PORT,()=>{
-        console.log("Server is running",PORT)
+        console.log("Server is running" + PORT)
     })
 })
 
