@@ -16,10 +16,26 @@ import addressRouter from './route/address.route.js'
 import orderRouter from './route/order.route.js'
 
 const app = express()
+// app.use(cors({
+//     credentials : true,
+//     origin : "https://blinkit.netlify.app/"
+// }))
+const allowedOrigins = [
+    'https://blinkit.netlify.app', // Your Netlify frontend URL
+    'https://blinkitclone-vy7b.onrender.com'    
+];
 app.use(cors({
-    credentials : true,
-    origin : "https://blinkit.netlify.app/"
-}))
+    origin: function (origin, callback) {
+        // Allow specific origins (Netlify) and also allow local development (localhost)
+        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+            callback(null, true);  // Allow the origin
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow necessary HTTP methods
+}));
 app.use(express.json())
 app.use(cookieParser())
 app.use(morgan())
