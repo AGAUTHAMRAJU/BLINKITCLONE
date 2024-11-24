@@ -1,4 +1,4 @@
-export const baseURL = "https://blinkitclone-jkfz.onrender.com"
+export const baseURL = "https://blinkitclone-vy7b.onrender.com/"
 
 const SummaryApi = {
     register : {
