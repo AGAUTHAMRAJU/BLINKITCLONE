@@ -89,7 +89,7 @@ const app = express();
 // Allowed origins for CORS
 const allowedOrigins = [
     'https://blinkit.netlify.app',  // Netlify frontend
-    'https://blinkitclone-vy7b.onrender.com' // Another backend domain (if applicable)
+     // Another backend domain (if applicable)
 ];
 
 // CORS setup
